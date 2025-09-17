@@ -14,14 +14,14 @@ export default function EducationPage() {
   };
 
   return (
-    <section className="min-h-screen px-6 py-16 bg-gray-100 dark:bg-gray-900 transition-colors duration-500 ease-in-out relative">
+    <section className="min-h-screen px-4 sm:px-6 lg:px-12 py-12 sm:py-16 bg-gray-100 dark:bg-gray-900 transition-colors duration-500 ease-in-out relative">
       <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/20 via-transparent to-transparent dark:from-indigo-900/40 pointer-events-none"></div>
 
-      <h2 className="text-4xl font-bold mb-12 text-center text-gray-900 dark:text-gray-100">
+      <h2 className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 text-center text-gray-900 dark:text-gray-100">
         Education
       </h2>
 
-      <div className="max-w-4xl mx-auto space-y-8">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
         {[{
           university: "University of Washington, Bothell, Washington",
           program: "Master of Science",

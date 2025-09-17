@@ -60,19 +60,16 @@ export default function ExperienceSection() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-16 bg-white dark:bg-gray-900 transition-colors duration-500 ease-in-out relative">
+    <section className="py-12 sm:py-16 bg-white dark:bg-gray-900 transition-colors duration-500 ease-in-out relative">
       <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/20 via-transparent to-transparent dark:from-indigo-900/40 pointer-events-none"></div>
 
-      <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-12">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-10 sm:mb-12">
           Professional Experience
         </h2>
 
-        <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-8 sm:gap-10">
           {experiences.map((exp, index) => {
-            const isHovered = hoveredIndex === index;
-            const isOtherHovered = hoveredIndex !== null && hoveredIndex !== index;
-
             return (
               <motion.div
                 key={index}
@@ -83,34 +80,33 @@ export default function ExperienceSection() {
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
                 animate={{
-                  scale: hoveredIndex === index ? 1.05 : 1,
-                  opacity: hoveredIndex === null || hoveredIndex === index ? 1 : 0.5,
-                  boxShadow:
-                    hoveredIndex === index
-                      ? "0 20px 40px rgba(0,0,0,0.3)"
-                      : "0 4px 10px rgba(0,0,0,0.1)",
+                  scale: hoveredIndex === index ? 1.03 : 1,
+                  opacity: hoveredIndex === null || hoveredIndex === index ? 1 : 0.6,
                 }}
-                className="p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl border-l-4 border-blue-600 relative cursor-pointer"
+                className="p-4 sm:p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl border-l-4 border-blue-600 relative cursor-pointer transition-transform"
               >
                 {/* Timeline Dot */}
-                <span className="absolute -left-3 top-6 w-6 h-6 bg-blue-600 rounded-full border-2 border-white dark:border-gray-900"></span>
+                <span className="absolute -left-3 top-6 w-4 h-4 sm:w-5 sm:h-5 bg-blue-600 rounded-full border-2 border-white dark:border-gray-900"></span>
 
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                    {exp.title} – <span className="text-blue-600">{exp.company}</span>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
+                    {exp.title} –{" "}
+                    <span className="text-blue-600">{exp.company}</span>
                   </h3>
-                  <span className="text-sm text-gray-500 dark:text-gray-400 mt-2 sm:mt-0">
+                  <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                     {exp.period}
                   </span>
                 </div>
 
-                <p className="text-gray-600 dark:text-gray-300 mt-2">{exp.description}</p>
+                <p className="text-gray-600 dark:text-gray-300 mt-2 text-sm sm:text-base">
+                  {exp.description}
+                </p>
 
                 <div className="flex flex-wrap gap-2 mt-3">
                   {exp.technologies.map((tech, idx) => (
                     <span
                       key={idx}
-                      className="px-3 py-1 text-sm rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300"
+                      className="px-2 sm:px-3 py-1 text-xs sm:text-sm rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300"
                     >
                       {tech}
                     </span>
@@ -121,7 +117,7 @@ export default function ExperienceSection() {
                   onClick={() => setSelectedExp(exp)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+                  className="mt-4 px-3 sm:px-4 py-1.5 sm:py-2 bg-blue-600 text-white text-sm sm:text-base rounded-lg hover:bg-blue-700 transition"
                 >
                   Learn More
                 </motion.button>
@@ -135,28 +131,28 @@ export default function ExperienceSection() {
       <AnimatePresence>
         {selectedExp && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black/50"
+            className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black/50 px-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg w-11/12 md:w-2/3 lg:w-1/2 p-6 relative"
+              className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg w-full max-w-lg sm:max-w-2xl p-4 sm:p-6 relative"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
                   {selectedExp.title} – {selectedExp.company}
                 </h3>
-                <span className="text-sm text-gray-500 dark:text-gray-400 mt-2 sm:mt-0">
+                <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                   {selectedExp.period}
                 </span>
               </div>
 
-              <p className="mt-4 text-gray-700 dark:text-gray-300">
+              <p className="mt-3 sm:mt-4 text-gray-700 dark:text-gray-300 text-sm sm:text-base">
                 {selectedExp.details}
               </p>
 
@@ -164,16 +160,16 @@ export default function ExperienceSection() {
                 {selectedExp.technologies.map((tech, idx) => (
                   <span
                     key={idx}
-                    className="px-3 py-1 text-sm rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300"
+                    className="px-2 sm:px-3 py-1 text-xs sm:text-sm rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300"
                   >
                     {tech}
-                    </span>
+                  </span>
                 ))}
               </div>
 
               <button
                 onClick={() => setSelectedExp(null)}
-                className="absolute top-3 right-3 px-3 py-1 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600"
+                className="absolute top-3 right-3 px-2 sm:px-3 py-1 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600"
               >
                 ✕
               </button>

@@ -67,10 +67,10 @@ export default function ProjectsPage() {
   }, [selected]);
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 px-6 py-20 transition-colors duration-500 ease-in-out relative">
+    <main className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 px-4 sm:px-6 lg:px-12 py-12 sm:py-20 transition-colors duration-500 ease-in-out relative">
       <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/20 via-transparent to-transparent dark:from-indigo-900/40 pointer-events-none"></div>
       <motion.h1
-        className="text-4xl font-bold text-center text-gray-900 dark:text-gray-100 mb-12"
+        className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center text-gray-900 dark:text-gray-100 mb-8 sm:mb-12"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -79,21 +79,21 @@ export default function ProjectsPage() {
       </motion.h1>
 
       {/* Grid of Project Cards */}
-      <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+      <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
         {projects.map((project, idx) => (
           <motion.div
             key={idx}
             whileHover={{ scale: 1.05, boxShadow: "0 15px 35px rgba(0,0,0,0.25)" }}
-            className="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6 flex flex-col justify-between transition-all duration-300"
+            className="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-5 sm:p-6 flex flex-col justify-between transition-all duration-300"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: idx * 0.1, duration: 0.6 }}
           >
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">{project.title}</h3>
-            <p className="text-gray-700 dark:text-gray-300 flex-grow">{project.desc}</p>
+            <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">{project.title}</h3>
+            <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 flex-grow">{project.desc}</p>
             <button
               onClick={() => setSelected(project)}
-              className="mt-6 px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition"
+              className="mt-4 sm:mt-6 px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition"
             >
               Learn More
             </button>
@@ -105,28 +105,28 @@ export default function ProjectsPage() {
       <AnimatePresence>
         {selected && (
           <motion.div
-            className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50"
+            className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50 p-4 sm:p-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-3xl w-full p-10 relative overflow-y-auto max-h-[80vh]"
+              className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-[95%] sm:w-11/12 lg:max-w-3xl p-6 sm:p-10 relative overflow-y-auto max-h-[85vh]"
               initial={{ scale: 0.9, opacity: 0, y: 50 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 50 }}
               transition={{ duration: 0.3 }}
             >
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">{selected.title}</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4 sm:mb-6">{selected.title}</h2>
 
-              <div className="mb-6">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Overview</h3>
-                <p className="text-gray-700 dark:text-gray-300">{selected.details.overview}</p>
+              <div className="mb-4 sm:mb-6">
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Overview</h3>
+                <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">{selected.details.overview}</p>
               </div>
 
-              <div className="mb-6">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Technologies Used</h3>
-                <ul className="list-disc list-inside text-gray-700 dark:text-gray-300">
+              <div className="mb-4 sm:mb-6">
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Technologies Used</h3>
+                <ul className="list-disc list-inside text-sm sm:text-base text-gray-700 dark:text-gray-300">
                   {selected.details.technologies.map((tech, i) => (
                     <li key={i}>{tech}</li>
                   ))}
@@ -134,13 +134,13 @@ export default function ProjectsPage() {
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Setup / Implementation</h3>
-                <p className="text-gray-700 dark:text-gray-300">{selected.details.setup}</p>
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Setup / Implementation</h3>
+                <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">{selected.details.setup}</p>
               </div>
 
               <button
                 onClick={() => setSelected(null)}
-                className="absolute top-4 right-4 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-xl"
+                className="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-lg sm:text-xl"
               >
                 ✕
               </button>
