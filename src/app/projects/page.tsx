@@ -202,8 +202,8 @@ export default function ProjectsPage() {
   }, [selected]);
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 px-4 sm:px-6 lg:px-12 py-12 sm:py-20 transition-colors duration-500 ease-in-out relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/20 via-transparent to-transparent dark:from-indigo-900/40 pointer-events-none"></div>
+    <main className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-[var(--background)] dark:to-[var(--surface)] px-4 sm:px-6 lg:px-12 py-12 sm:py-20 transition-colors duration-500 ease-in-out relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/20 via-transparent to-transparent dark:from-indigo-500/20 pointer-events-none"></div>
       <motion.h1
         className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center text-gray-900 dark:text-gray-100 mb-8 sm:mb-12"
         initial={{ opacity: 0, y: -20 }}
@@ -219,7 +219,7 @@ export default function ProjectsPage() {
           <motion.div
             key={idx}
             whileHover={{ scale: 1.05, boxShadow: "0 15px 35px rgba(0,0,0,0.25)" }}
-            className="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-5 sm:p-6 flex flex-col justify-between transition-all duration-300"
+            className="bg-white dark:bg-[var(--surface-elevated)] shadow-lg rounded-xl p-5 sm:p-6 flex flex-col justify-between transition-all duration-300"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: idx * 0.1, duration: 0.6 }}
@@ -228,7 +228,7 @@ export default function ProjectsPage() {
             <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 flex-grow">{project.desc}</p>
             <button
               onClick={() => setSelected(project)}
-              className="mt-4 sm:mt-6 px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition"
+              className="mt-4 sm:mt-6 px-4 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition"
             >
               Learn More
             </button>
@@ -246,7 +246,7 @@ export default function ProjectsPage() {
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-[95%] sm:w-11/12 lg:max-w-3xl p-6 sm:p-10 relative overflow-y-auto max-h-[85vh]"
+              className="bg-white dark:bg-[var(--surface-elevated)] rounded-xl shadow-xl w-[95%] sm:w-11/12 lg:max-w-3xl p-6 sm:p-10 relative overflow-y-auto max-h-[85vh]"
               initial={{ scale: 0.9, opacity: 0, y: 50 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 50 }}

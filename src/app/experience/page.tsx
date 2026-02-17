@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { MapPin, Briefcase } from "lucide-react";
 
 interface Experience {
   title: string;
@@ -57,70 +58,126 @@ const experiences: Experience[] = [
 
 export default function ExperienceSection() {
   const [selectedExp, setSelectedExp] = useState<Experience | null>(null);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-12 sm:py-16 bg-white dark:bg-gray-900 transition-colors duration-500 ease-in-out relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/20 via-transparent to-transparent dark:from-indigo-900/40 pointer-events-none"></div>
+    <section className="relative min-h-screen py-16 sm:py-24 bg-[var(--background)] transition-colors duration-500 overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/10 via-transparent to-indigo-500/10 pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-10 sm:mb-12">
-          Professional Experience
-        </h2>
+      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <motion.div
+          className="text-center mb-16 sm:mb-20"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <motion.div
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 text-sm font-medium mb-4"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2 }}
+          >
+            <MapPin className="w-4 h-4" />
+            Career Journey
+          </motion.div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+            Experience
+          </h2>
+          <p className="mt-3 text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
+            A timeline of roles and growth
+          </p>
+        </motion.div>
 
-        <div className="flex flex-col gap-8 sm:gap-10">
+        {/* Time map: central line + alternating cards */}
+        <div className="relative">
+          {/* Mobile: left timeline line */}
+          <div className="sm:hidden absolute left-5 top-0 bottom-0 w-0.5 rounded-full bg-gradient-to-b from-indigo-200 via-indigo-500 to-indigo-200 dark:from-indigo-900 dark:via-indigo-500 dark:to-indigo-900" />
+          {/* Desktop: central journey line */}
+          <div className="hidden sm:block absolute left-1/2 top-0 bottom-0 w-0.5 sm:w-1 -translate-x-1/2 rounded-full bg-gradient-to-b from-indigo-200 via-indigo-500 to-indigo-200 dark:from-indigo-900 dark:via-indigo-500 dark:to-indigo-900" />
+
           {experiences.map((exp, index) => {
+            const isLeft = index % 2 === 0;
             return (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                animate={{
-                  scale: hoveredIndex === index ? 1.03 : 1,
-                  opacity: hoveredIndex === null || hoveredIndex === index ? 1 : 0.6,
-                }}
-                className="p-4 sm:p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl border-l-4 border-blue-600 relative cursor-pointer transition-transform"
+                className="relative flex flex-col sm:flex-row sm:items-center gap-0 mb-12 sm:mb-16 last:mb-0"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                {/* Timeline Dot */}
-                <span className="absolute -left-3 top-6 w-4 h-4 sm:w-5 sm:h-5 bg-blue-600 rounded-full border-2 border-white dark:border-gray-900"></span>
-
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
-                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
-                    {exp.title} –{" "}
-                    <span className="text-blue-600">{exp.company}</span>
-                  </h3>
-                  <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
-                    {exp.period}
-                  </span>
-                </div>
-
-                <p className="text-gray-600 dark:text-gray-300 mt-2 text-sm sm:text-base">
-                  {exp.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mt-3">
-                  {exp.technologies.map((tech, idx) => (
-                    <span
-                      key={idx}
-                      className="px-2 sm:px-3 py-1 text-xs sm:text-sm rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                <motion.button
-                  onClick={() => setSelectedExp(exp)}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="mt-4 px-3 sm:px-4 py-1.5 sm:py-2 bg-blue-600 text-white text-sm sm:text-base rounded-lg hover:bg-blue-700 transition"
+                {/* Mobile: dot on timeline */}
+                <div className="sm:hidden absolute left-5 top-8 -translate-x-1/2 w-3 h-3 rounded-full bg-indigo-600 dark:bg-indigo-500 ring-2 ring-white dark:ring-[var(--background)] z-10" />
+                {/* Card - alternating sides on desktop */}
+                <div
+                  className={`w-full sm:w-[calc(50%-2rem)] flex justify-center pl-12 sm:pl-0 ${
+                    isLeft ? "sm:order-1 sm:pr-10" : "sm:order-3 sm:pl-10"
+                  }`}
                 >
-                  Learn More
-                </motion.button>
+                  <motion.article
+                    className="group relative w-full max-w-md rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[var(--surface-elevated)] shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+                    whileHover={{ y: -4, scale: 1.01 }}
+                    onClick={() => setSelectedExp(exp)}
+                  >
+                    {/* Date badge - like a map stop */}
+                    <div className="absolute -top-3 left-4 flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-600 text-white text-xs font-semibold shadow-md">
+                      <Briefcase className="w-3.5 h-3.5" />
+                      {exp.period}
+                    </div>
+
+                    <div className="p-5 pt-6 sm:p-6 cursor-pointer">
+                      <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white pr-8">
+                        {exp.title}
+                      </h3>
+                      <p className="mt-1 text-sm text-indigo-600 dark:text-indigo-400 font-medium flex items-center gap-1.5">
+                        <MapPin className="w-3.5 h-3.5 flex-shrink-0" />
+                        {exp.company}
+                      </p>
+                      <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                        {exp.description}
+                      </p>
+                      <div className="mt-4 flex flex-wrap gap-1.5">
+                        {exp.technologies.slice(0, 4).map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-2 py-0.5 rounded-md text-xs font-medium bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                        {exp.technologies.length > 4 && (
+                          <span className="px-2 py-0.5 rounded-md text-xs text-gray-500">
+                            +{exp.technologies.length - 4}
+                          </span>
+                        )}
+                      </div>
+                      <p className="mt-4 text-xs font-medium text-indigo-600 dark:text-indigo-400 group-hover:underline">
+                        Learn more →
+                      </p>
+                    </div>
+
+                    {/* Connector line from card to center */}
+                    <div
+                      className={`hidden sm:block absolute top-1/2 w-8 h-0.5 bg-indigo-300 dark:bg-indigo-600 -translate-y-1/2 ${
+                        isLeft ? "right-0 translate-x-full" : "left-0 -translate-x-full"
+                      }`}
+                    />
+                  </motion.article>
+                </div>
+
+                {/* Center node - dot on the timeline */}
+                <div className="hidden sm:flex absolute left-1/2 -translate-x-1/2 w-12 h-12 flex-shrink-0 items-center justify-center z-10 sm:order-2">
+                  <motion.div
+                    className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-indigo-600 dark:bg-indigo-500 ring-4 ring-white dark:ring-[var(--background)] shadow-lg"
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ type: "spring", stiffness: 300, delay: index * 0.1 + 0.2 }}
+                  />
+                </div>
+
+                {/* Spacer for opposite side */}
+                <div className={`hidden sm:block w-[calc(50%-2rem)] ${isLeft ? "sm:order-3" : "sm:order-1"}`} />
               </motion.div>
             );
           })}
@@ -135,41 +192,44 @@ export default function ExperienceSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            onClick={() => setSelectedExp(null)}
           >
             <motion.div
-              className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg w-full max-w-lg sm:max-w-2xl p-4 sm:p-6 relative"
-              initial={{ scale: 0.8, opacity: 0 }}
+              className="bg-white dark:bg-[var(--surface-elevated)] rounded-2xl shadow-2xl w-full max-w-lg sm:max-w-2xl p-4 sm:p-6 relative"
+              initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 300 }}
+              onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
-                  {selectedExp.title} – {selectedExp.company}
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white pr-8">
+                  {selectedExp.title}
                 </h3>
-                <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+                <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 flex-shrink-0">
                   {selectedExp.period}
                 </span>
               </div>
-
-              <p className="mt-3 sm:mt-4 text-gray-700 dark:text-gray-300 text-sm sm:text-base">
+              <p className="mt-2 text-sm text-indigo-600 dark:text-indigo-400 font-medium">
+                {selectedExp.company}
+              </p>
+              <p className="mt-4 text-gray-700 dark:text-gray-300 text-sm sm:text-base leading-relaxed">
                 {selectedExp.details}
               </p>
-
               <div className="flex flex-wrap gap-2 mt-4">
-                {selectedExp.technologies.map((tech, idx) => (
+                {selectedExp.technologies.map((tech) => (
                   <span
-                    key={idx}
-                    className="px-2 sm:px-3 py-1 text-xs sm:text-sm rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300"
+                    key={tech}
+                    className="px-2.5 py-1 text-xs sm:text-sm rounded-full bg-indigo-100 text-indigo-600 dark:bg-indigo-900 dark:text-indigo-300"
                   >
                     {tech}
                   </span>
                 ))}
               </div>
-
               <button
                 onClick={() => setSelectedExp(null)}
-                className="absolute top-3 right-3 px-2 sm:px-3 py-1 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600"
+                className="absolute top-4 right-4 p-2 rounded-full text-gray-500 hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white transition-colors"
+                aria-label="Close"
               >
                 ✕
               </button>

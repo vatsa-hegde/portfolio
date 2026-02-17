@@ -1,18 +1,25 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --surface: #f9fafb;
+  --surface-elevated: #ffffff;
+  --muted: #6b7280;
 }
 .dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+  --background: #1e1e24;
+  --foreground: #e4e4e7;
+  --surface: #28282f;
+  --surface-elevated: #32323a;
+  --muted: #a1a1aa;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {

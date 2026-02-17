@@ -39,7 +39,7 @@ export default function Education({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6 mb-8 transition-colors duration-500 ease-in-out"
+      className="bg-white dark:bg-[var(--surface-elevated)] shadow-lg rounded-xl p-6 mb-8 transition-colors duration-500 ease-in-out"
     >
       <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
         {university}
@@ -72,7 +72,7 @@ export default function Education({
         {courses.length > 4 && (
           <button
             onClick={() => setShowAll(!showAll)}
-            className="mt-3 text-blue-600 dark:text-blue-400 text-sm font-medium hover:underline"
+            className="mt-3 text-indigo-600 dark:text-indigo-400 text-sm font-medium hover:underline"
           >
             {showAll ? "Show Less" : "Show More"}
           </button>
@@ -89,7 +89,7 @@ export default function Education({
         <a
           href={transcriptUrl}
           download
-          className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition-colors"
+          className="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition-colors"
         >
           <Download className="w-4 h-4 mr-2" />
           Download Transcript

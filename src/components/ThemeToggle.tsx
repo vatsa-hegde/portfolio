@@ -1,30 +1,29 @@
 "use client";
-import { useEffect, useState } from "react";
+
+import { motion } from "framer-motion";
+import { useTheme } from "@/contexts/ThemeContext";
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
-
-  useEffect(() => {
-    // Check localStorage or system preference
-    const stored = localStorage.getItem("theme") as "light" | "dark" | null;
-    if (stored) setTheme(stored);
-    else if (window.matchMedia("(prefers-color-scheme: dark)").matches) setTheme("dark");
-    document.documentElement.classList.toggle("dark", theme === "dark");
-  }, [theme]);
-
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-    document.documentElement.classList.toggle("dark", newTheme === "dark");
-  };
+  const { theme, toggleTheme } = useTheme();
 
   return (
-    <button
+    <motion.button
+      type="button"
       onClick={toggleTheme}
-      className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 hover:ring-2 hover:ring-blue-500 transition"
+      aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
+      className="p-2 rounded-full bg-gray-200 dark:bg-[var(--surface-elevated)] text-gray-900 dark:text-gray-100 hover:ring-2 hover:ring-indigo-500 transition-colors"
+      whileHover={{ scale: 1.08 }}
+      whileTap={{ scale: 0.92, rotate: 15 }}
+      transition={{ type: "spring", stiffness: 400 }}
     >
-      {theme === "light" ? "🌙" : "☀️"}
-    </button>
+      <motion.span
+        key={theme}
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.2 }}
+      >
+        {theme === "light" ? "🌙" : "☀️"}
+      </motion.span>
+    </motion.button>
   );
 }

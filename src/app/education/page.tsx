@@ -66,8 +66,8 @@ const certificationData = [
 
 
   return (
-    <section className="min-h-screen px-4 sm:px-6 lg:px-12 py-12 sm:py-16 bg-gray-100 dark:bg-gray-900 transition-colors duration-500 ease-in-out relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/20 via-transparent to-transparent dark:from-indigo-900/40 pointer-events-none"></div>
+    <section className="min-h-screen px-4 sm:px-6 lg:px-12 py-12 sm:py-16 bg-gray-100 dark:bg-[var(--background)] transition-colors duration-500 ease-in-out relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/20 via-transparent to-transparent dark:from-indigo-500/20 pointer-events-none"></div>
 
       {/* Education Section */}
       <h2 className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 text-center text-gray-900 dark:text-gray-100">
@@ -121,7 +121,7 @@ const certificationData = [
             onMouseLeave={() => setFocusedIndex(null)}
             className={`transition-transform duration-300 ${
               focusedIndex !== null && focusedIndex !== idx ? "opacity-60" : "opacity-100"
-            } p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md`}
+            } p-6 bg-white dark:bg-[var(--surface-elevated)] rounded-lg shadow-md`}
           >
             <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">{cert.title}</h3>
             <p className="text-gray-700 dark:text-gray-300 mt-2">{cert.issuer}</p>

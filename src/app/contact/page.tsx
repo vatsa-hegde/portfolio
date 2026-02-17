@@ -4,19 +4,19 @@ import { FaGithub, FaLinkedin, FaEnvelope, FaPhone } from "react-icons/fa";
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-16 sm:py-20 transition-colors duration-500 ease-in-out relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/20 via-transparent to-transparent dark:from-indigo-900/40 pointer-events-none"></div>
+    <main className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-[var(--background)] dark:to-[var(--surface)] flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-16 sm:py-20 transition-colors duration-500 ease-in-out relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/20 via-transparent to-transparent dark:from-indigo-500/20 pointer-events-none"></div>
 
       {/* Animated subtle overlay */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-b from-indigo-500/10 via-transparent to-indigo-500/10 dark:from-indigo-900/20 dark:to-indigo-900/20 pointer-events-none"
+        className="absolute inset-0 bg-gradient-to-b from-indigo-500/10 via-transparent to-indigo-500/10 dark:from-indigo-500/15 dark:to-indigo-500/15 pointer-events-none"
         animate={{ y: [0, 20, 0] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
 
       {/* Card container */}
       <motion.div
-        className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-6 sm:p-10 max-w-lg sm:max-w-2xl w-full text-center flex flex-col items-center gap-6 transition-colors duration-500"
+        className="relative bg-white dark:bg-[var(--surface-elevated)] rounded-2xl shadow-2xl p-6 sm:p-10 max-w-lg sm:max-w-2xl w-full text-center flex flex-col items-center gap-6 transition-colors duration-500"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -35,7 +35,7 @@ export default function ContactPage() {
           href="mailto:sghegde@uw.edu"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
-          className="px-5 sm:px-6 py-2.5 sm:py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition text-sm sm:text-base"
+          className="px-5 sm:px-6 py-2.5 sm:py-3 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition text-sm sm:text-base"
         >
           Mail Me
         </motion.a>
@@ -64,7 +64,7 @@ export default function ContactPage() {
             href="https://linkedin.com/in/shreevatsa-g-hegde"
             target="_blank"
             whileHover={{ scale: 1.2 }}
-            className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors"
+            className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
           >
             <FaLinkedin />
           </motion.a>

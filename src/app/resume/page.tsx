@@ -6,10 +6,10 @@ export default function ResumeSection() {
   return (
     <section
       id="resume"
-      className="py-16 px-4 sm:px-6 md:px-20 bg-white dark:bg-gray-900 transition-colors duration-500 ease-in-out relative"
+      className="py-16 px-4 sm:px-6 md:px-20 bg-white dark:bg-[var(--background)] transition-colors duration-500 ease-in-out relative"
     >
       {/* Subtle background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/20 via-transparent to-transparent dark:from-indigo-900/40 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/20 via-transparent to-transparent dark:from-indigo-500/20 pointer-events-none"></div>
 
       <motion.h2
         className="text-3xl sm:text-4xl font-bold mb-8 text-center text-gray-900 dark:text-gray-100 relative z-10"
@@ -36,7 +36,7 @@ export default function ResumeSection() {
         <a
           href="/resume.pdf"
           download="Shreevatsa_Hegde_Resume.pdf"
-          className="mt-6 inline-flex items-center px-5 sm:px-6 py-2.5 sm:py-3 bg-blue-600 text-white text-sm sm:text-base font-semibold rounded-lg shadow-md hover:bg-blue-700 transition"
+          className="mt-6 inline-flex items-center px-5 sm:px-6 py-2.5 sm:py-3 bg-indigo-600 text-white text-sm sm:text-base font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition"
         >
           {/* Inline SVG icon */}
           <svg
