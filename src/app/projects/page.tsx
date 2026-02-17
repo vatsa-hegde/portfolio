@@ -3,15 +3,16 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { projectsData, createSlug } from "@/lib/projects";
+import { Rocket, Laptop, Share2, Zap } from "lucide-react";
 
 export default function ProjectsPage() {
   const [selectedCategory, setSelectedCategory] = useState<"all" | "full-stack" | "distributed-systems" | "iot">("all");
 
   const categories = [
-    { id: "all", label: "All Projects", icon: "🚀" },
-    { id: "full-stack", label: "Full-Stack Applications", icon: "💻" },
-    { id: "distributed-systems", label: "Distributed Systems", icon: "🔗" },
-    { id: "iot", label: "IoT Solutions", icon: "📱" },
+    { id: "all", label: "All Projects", icon: Rocket },
+    { id: "full-stack", label: "Full-Stack Applications", icon: Laptop },
+    { id: "distributed-systems", label: "Distributed Systems", icon: Share2 },
+    { id: "iot", label: "IoT Solutions", icon: Zap },
   ];
 
   const filteredProjects = selectedCategory === "all" 
@@ -65,7 +66,7 @@ export default function ProjectsPage() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span>{cat.icon}</span>
+              <cat.icon className="w-4 h-4" />
               {cat.label}
             </motion.button>
           ))}

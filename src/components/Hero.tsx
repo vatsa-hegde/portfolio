@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ArrowRight, Mail } from "lucide-react";
 
 const SCROLL_THRESHOLD = 60;
 
@@ -126,20 +126,22 @@ export default function Hero() {
           >
             <motion.a
               href="/resume"
-              className="inline-flex justify-center px-5 py-3 rounded-lg bg-indigo-600 text-white font-medium shadow hover:bg-indigo-700 text-sm sm:text-base"
+              className="inline-flex justify-center items-center px-5 py-3 rounded-lg bg-indigo-600 text-white font-medium shadow hover:bg-indigo-700 text-sm sm:text-base gap-2"
               whileHover={{ scale: 1.04, boxShadow: "0 10px 25px -5px rgba(99, 102, 241, 0.4)" }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 400 }}
             >
+              <ArrowRight className="w-4 h-4" />
               View Resume
             </motion.a>
             <motion.a
               href="/contact"
-              className="inline-flex justify-center px-5 py-3 rounded-lg bg-gray-200 text-gray-900 dark:bg-[var(--surface-elevated)] dark:text-gray-100 font-medium shadow hover:bg-gray-300 dark:hover:bg-[var(--surface)] text-sm sm:text-base border border-gray-300/50 dark:border-white/10"
+              className="inline-flex justify-center items-center px-5 py-3 rounded-lg bg-gray-200 text-gray-900 dark:bg-[var(--surface-elevated)] dark:text-gray-100 font-medium shadow hover:bg-gray-300 dark:hover:bg-[var(--surface)] text-sm sm:text-base border border-gray-300/50 dark:border-white/10 gap-2"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 400 }}
             >
+              <Mail className="w-4 h-4" />
               Contact Me
             </motion.a>
           </motion.div>

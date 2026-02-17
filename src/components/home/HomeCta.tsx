@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { ArrowRight, Zap } from "lucide-react";
 
 export default function HomeCta() {
   return (
@@ -24,16 +25,18 @@ export default function HomeCta() {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
             <Link
               href="/resume"
-              className="inline-flex justify-center items-center px-6 py-3 rounded-lg bg-indigo-600 text-white font-medium shadow hover:bg-indigo-700 text-sm sm:text-base"
+              className="inline-flex justify-center items-center px-6 py-3 rounded-lg bg-indigo-600 text-white font-medium shadow hover:bg-indigo-700 text-sm sm:text-base gap-2"
             >
+              <Zap className="w-4 h-4" />
               View Resume
             </Link>
           </motion.div>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
             <Link
               href="/contact"
-              className="inline-flex justify-center items-center px-6 py-3 rounded-lg bg-white dark:bg-[var(--surface-elevated)] text-gray-900 dark:text-gray-100 font-medium border border-gray-300 dark:border-white/10 hover:border-indigo-400 dark:hover:border-indigo-500/50 text-sm sm:text-base"
+              className="inline-flex justify-center items-center px-6 py-3 rounded-lg bg-white dark:bg-[var(--surface-elevated)] text-gray-900 dark:text-gray-100 font-medium border border-gray-300 dark:border-white/10 hover:border-indigo-400 dark:hover:border-indigo-500/50 text-sm sm:text-base gap-2"
             >
+              <ArrowRight className="w-4 h-4" />
               Get in Touch
             </Link>
           </motion.div>

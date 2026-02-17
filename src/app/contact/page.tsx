@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaEnvelope, FaPhone } from "react-icons/fa";
+import { Mail, Phone, Send } from "lucide-react";
 
 export default function ContactPage() {
   return (
@@ -21,7 +22,8 @@ export default function ContactPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100">
+        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 flex items-center justify-center gap-2">
+          <Send className="w-8 h-8 text-indigo-600 dark:text-indigo-400" />
           Get in Touch
         </h1>
 
@@ -35,8 +37,9 @@ export default function ContactPage() {
           href="mailto:sghegde@uw.edu"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
-          className="px-5 sm:px-6 py-2.5 sm:py-3 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition text-sm sm:text-base"
+          className="px-5 sm:px-6 py-2.5 sm:py-3 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition text-sm sm:text-base inline-flex items-center gap-2"
         >
+          <Mail className="w-4 h-4" />
           Mail Me
         </motion.a>
 
@@ -46,7 +49,7 @@ export default function ContactPage() {
           whileHover={{ scale: 1.05 }}
           className="flex items-center gap-2 mt-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-sm sm:text-base"
         >
-          <FaPhone className="text-lg sm:text-xl" />
+          <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
           +1 425 471 1440
         </motion.a>
 

@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Zap } from "lucide-react";
 import { createSlug } from "@/lib/projects";
 
 interface FeaturedProject {
@@ -84,8 +84,7 @@ export default function FeaturedProjects() {
                     </span>
                   ))}
                 </div>
-                <div className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-indigo-600 dark:text-indigo-400 group-hover:gap-3 transition-all">
-                  Learn More <ArrowRight size={16} />
+                <div className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-indigo-600 dark:text-indigo-400 group-hover:gap-3 transition-all">                <Zap className="w-4 h-4" />                  Learn More <ArrowRight size={16} />
                 </div>
               </motion.article>
             </Link>

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Lightbulb, Target, Code, Database } from "lucide-react";
 
 const focusAreas = [
   "Distributed Systems",
@@ -56,24 +57,33 @@ export default function AboutSection() {
             visible: { transition: { staggerChildren: 0.06 } },
           }}
         >
-          {focusAreas.map((area, i) => (
-            <motion.span
-              key={area}
-              variants={{
-                hidden: { opacity: 0, y: 12, scale: 0.9 },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  scale: 1,
-                  transition: { type: "spring", stiffness: 400, damping: 25 },
-                },
-              }}
-              whileHover={{ scale: 1.05, y: -2 }}
-              className="px-3 py-1.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-700 dark:bg-indigo-500/20 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-500/30"
-            >
-              {area}
-            </motion.span>
-          ))}
+          {focusAreas.map((area, i) => {
+            const icons = [
+              <Lightbulb key="1" />,
+              <Target key="2" />,
+              <Code key="3" />,
+              <Database key="4" />,
+            ];
+            return (
+              <motion.span
+                key={area}
+                variants={{
+                  hidden: { opacity: 0, y: 12, scale: 0.9 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    transition: { type: "spring", stiffness: 400, damping: 25 },
+                  },
+                }}
+                whileHover={{ scale: 1.05, y: -2 }}
+                className="px-3 py-1.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-700 dark:bg-indigo-500/20 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-500/30 flex items-center gap-2"
+              >
+                {icons[i % icons.length]}
+                {area}
+              </motion.span>
+            );
+          })}
         </motion.div>
       </div>
     </section>

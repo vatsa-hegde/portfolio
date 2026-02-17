@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MapPin, Briefcase } from "lucide-react";
+import { MapPin, Briefcase, Code2, Calendar, Building2, FileText } from "lucide-react";
 
 interface Experience {
   title: string;
@@ -68,6 +68,28 @@ const experiences: Experience[] = [
 
 export default function ExperienceSection() {
   const [selectedExp, setSelectedExp] = useState<Experience | null>(null);
+  const createSlug = (title: string) =>
+    title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
+  useEffect(() => {
+    const scrollToHash = () => {
+      const hash = typeof window !== "undefined" ? window.location.hash : "";
+      if (!hash) return;
+      const id = hash.replace("#", "");
+      const el = document.getElementById(id);
+      if (el) {
+        // small timeout to allow layout to settle
+        setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "center" }), 60);
+      }
+    };
+
+    // initial attempt
+    scrollToHash();
+
+    // react to future hash changes (back/forward or repeated clicks)
+    window.addEventListener("hashchange", scrollToHash);
+    return () => window.removeEventListener("hashchange", scrollToHash);
+  }, []);
 
   return (
     <section className="relative min-h-screen py-16 sm:py-24 bg-[var(--background)] transition-colors duration-500 overflow-hidden">
@@ -125,6 +147,7 @@ export default function ExperienceSection() {
                   }`}
                 >
                   <motion.article
+                    id={createSlug(exp.title)}
                     className="group relative w-full max-w-md rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[var(--surface-elevated)] shadow-lg hover:shadow-xl transition-all duration-300"
                     whileHover={{ y: -4, scale: 1.01 }}
                     onClick={() => setSelectedExp(exp)}
@@ -150,8 +173,9 @@ export default function ExperienceSection() {
                         {exp.technologies.slice(0, 4).map((tech) => (
                           <span
                             key={tech}
-                            className="px-2 py-0.5 rounded-md text-xs font-medium bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300"
+                            className="px-2 py-0.5 rounded-md text-xs font-medium bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300 flex items-center gap-1 inline-flex"
                           >
+                            <Code2 className="w-3 h-3" />
                             {tech}
                           </span>
                         ))}

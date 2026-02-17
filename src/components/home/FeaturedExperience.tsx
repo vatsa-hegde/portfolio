@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Briefcase } from "lucide-react";
 
 interface FeaturedExp {
   title: string;
@@ -33,6 +33,12 @@ const featured: FeaturedExp[] = [
 ];
 
 export default function FeaturedExperience() {
+  const createSlug = (title: string) =>
+    title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "");
+
   return (
     <section className="relative py-16 sm:py-24 px-4 sm:px-6 md:px-10 bg-gray-50 dark:bg-[var(--surface)]/50 transition-colors duration-500">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-500/5 to-transparent dark:via-indigo-500/10 pointer-events-none" />
@@ -58,15 +64,15 @@ export default function FeaturedExperience() {
 
         <div className="space-y-6">
           {featured.map((exp, idx) => (
-            <motion.article
-              key={exp.title}
-              className="p-5 sm:p-6 rounded-xl bg-white dark:bg-[var(--surface-elevated)] shadow-sm border border-gray-200 dark:border-white/10 hover:border-indigo-300 dark:hover:border-indigo-500/50 transition-colors"
-              initial={{ opacity: 0, x: -24 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-30px" }}
-              transition={{ duration: 0.5, delay: idx * 0.1, type: "spring", stiffness: 100 }}
-              whileHover={{ y: -4, boxShadow: "0 12px 24px -10px rgba(0,0,0,0.15)" }}
-            >
+            <Link key={exp.title} href={`/experience#${createSlug(exp.title)}`} className="block">
+              <motion.article
+                className="p-5 sm:p-6 rounded-xl bg-white dark:bg-[var(--surface-elevated)] shadow-sm border border-gray-200 dark:border-white/10 hover:border-indigo-300 dark:hover:border-indigo-500/50 transition-colors cursor-pointer"
+                initial={{ opacity: 0, x: -24 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-30px" }}
+                transition={{ duration: 0.5, delay: idx * 0.1, type: "spring", stiffness: 100 }}
+                whileHover={{ y: -4, boxShadow: "0 12px 24px -10px rgba(0,0,0,0.15)" }}
+              >
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                   {exp.title}
@@ -90,7 +96,8 @@ export default function FeaturedExperience() {
                   </span>
                 ))}
               </div>
-            </motion.article>
+              </motion.article>
+            </Link>
           ))}
         </div>
       </div>

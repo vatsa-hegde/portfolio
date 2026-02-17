@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Education from "@/components/Education";
 import { useState } from "react";
+import { BookOpen, Award, Calendar, Building2 } from "lucide-react";
 
 export default function EducationPage() {
   const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
@@ -83,6 +84,7 @@ const certificationData = [
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2 }}
           >
+            <BookOpen className="w-4 h-4" />
             Education
           </motion.div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
@@ -134,6 +136,7 @@ const certificationData = [
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2 }}
           >
+            <Award className="w-4 h-4" />
             Certifications
           </motion.div>
           <h3 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
