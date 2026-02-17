@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Download } from "lucide-react";
+import { Download, GraduationCap } from "lucide-react";
 
 interface EducationProps {
   university: string;
   program: string;
   major: string;
-  graduation: string; // e.g. "June 2026"
+  graduation: string;
   courses: string[];
   transcriptUrl: string;
 }
@@ -22,9 +22,8 @@ export default function Education({
   transcriptUrl,
 }: EducationProps) {
   const [showAll, setShowAll] = useState(false);
-  const visibleCourses = showAll ? courses : courses.slice(0, 4);
+  const visibleCourses = showAll ? courses : courses.slice(0, 5);
 
-  // Animation variants for courses
   const courseVariants = {
     hidden: { opacity: 0, y: 10 },
     visible: (i: number) => ({
@@ -37,64 +36,87 @@ export default function Education({
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="bg-white dark:bg-[var(--surface-elevated)] shadow-lg rounded-xl p-6 mb-8 transition-colors duration-500 ease-in-out"
+      className="group relative bg-white dark:bg-[var(--surface-elevated)] rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:shadow-lg hover:border-indigo-300 dark:hover:border-indigo-500/50 transition-all duration-300 overflow-hidden"
     >
-      <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-        {university}
-      </h3>
-      <p className="text-lg text-gray-700 dark:text-gray-300 mt-1">
-        {program} in {major}
-      </p>
-      <p className="text-sm text-gray-500 dark:text-gray-400">Date: {graduation}</p>
+      {/* Top accent bar */}
+      <div className="h-1 bg-gradient-to-r from-indigo-500 via-indigo-600 to-indigo-500"></div>
 
-      {/* Courses */}
-      <div className="mt-4">
-        <h4 className="font-semibold text-gray-900 dark:text-gray-100">Courses</h4>
-        <motion.div
-          className="mt-3 flex flex-wrap gap-2"
-          initial="hidden"
-          animate="visible"
-        >
-          {visibleCourses.map((course, idx) => (
-            <motion.span
-              key={idx}
-              custom={idx}
-              variants={courseVariants}
-              className="px-3 py-1 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm font-medium hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
-            >
-              {course}
-            </motion.span>
-          ))}
-        </motion.div>
+      <div className="p-6 sm:p-8">
+        {/* Header with icon */}
+        <div className="flex items-start gap-3 mb-5">
+          <div className="p-2.5 rounded-lg bg-indigo-100 dark:bg-indigo-900/40 group-hover:bg-indigo-200 dark:group-hover:bg-indigo-900/60 transition-colors">
+            <GraduationCap className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
+          </div>
+          <div className="flex-1">
+            <p className="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wide font-semibold mb-1">
+              {university}
+            </p>
+            <h3 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-indigo-600 to-indigo-700 dark:from-indigo-400 dark:to-indigo-500 bg-clip-text text-transparent mb-2">
+              {program}
+            </h3>
+            <p className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">
+              {major}
+            </p>
+          </div>
+        </div>
 
-        {courses.length > 4 && (
-          <button
-            onClick={() => setShowAll(!showAll)}
-            className="mt-3 text-indigo-600 dark:text-indigo-400 text-sm font-medium hover:underline"
+        {/* Graduation date */}
+        <p className="mb-6 text-sm text-gray-500 dark:text-gray-400 flex items-center gap-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+          Graduation: <span className="font-semibold text-gray-600 dark:text-gray-300">{graduation}</span>
+        </p>
+
+        {/* Courses */}
+        <div className="mb-6">
+          <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100 uppercase tracking-wide mb-3">
+            Courses
+          </h4>
+          <motion.div
+            className="flex flex-wrap gap-2"
+            initial="hidden"
+            animate="visible"
           >
-            {showAll ? "Show Less" : "Show More"}
-          </button>
-        )}
-      </div>
+            {visibleCourses.map((course, idx) => (
+              <motion.span
+                key={idx}
+                custom={idx}
+                variants={courseVariants}
+                className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-indigo-50 to-indigo-100 dark:from-indigo-900/20 dark:to-indigo-900/40 text-indigo-700 dark:text-indigo-300 text-xs sm:text-sm font-medium border border-indigo-200 dark:border-indigo-500/30 hover:border-indigo-400 dark:hover:border-indigo-500 transition-colors"
+              >
+                {course}
+              </motion.span>
+            ))}
+          </motion.div>
 
-      {/* Transcript Download */}
-      <motion.div
-        className="mt-4"
-        whileHover={{ scale: 1.03 }}
-        whileTap={{ scale: 0.97 }}
-        transition={{ type: "spring", stiffness: 300 }}
-      >
-        <a
-          href={transcriptUrl}
-          download
-          className="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition-colors"
+          {courses.length > 5 && (
+            <motion.button
+              onClick={() => setShowAll(!showAll)}
+              className="mt-3 text-xs sm:text-sm text-indigo-600 dark:text-indigo-400 font-semibold hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors"
+              whileHover={{ x: 4 }}
+            >
+              {showAll ? "Show Less" : `Show ${courses.length - 5} More`}
+            </motion.button>
+          )}
+        </div>
+
+        {/* Transcript Download Button */}
+        <motion.div
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
         >
-          <Download className="w-4 h-4 mr-2" />
-          Download Transcript
-        </a>
-      </motion.div>
+          <a
+            href={transcriptUrl}
+            download
+            className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white rounded-lg font-medium text-sm transition-all duration-300 shadow-md hover:shadow-lg"
+          >
+            <Download className="w-4 h-4" />
+            Download Transcript
+          </a>
+        </motion.div>
+      </div>
     </motion.div>
   );
 }

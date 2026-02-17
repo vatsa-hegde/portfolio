@@ -1,25 +1,34 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-const featured = [
+interface FeaturedExp {
+  title: string;
+  company: string;
+  period: string;
+  description: string;
+  technologies: string[];
+}
+
+const featured: FeaturedExp[] = [
   {
-    title: "Graduate Research Assistant",
-    company: "University of Washington, Bothell",
-    period: "Jun 2025 – Present",
+    title: "Software Engineering Intern",
+    company: "Greensand AI, Seattle, Washington",
+    period: "Jan 2026 – Present",
     description:
-      "Leading distributed computing and software engineering research, building scalable systems and full-stack platforms.",
-    technologies: ["Java", "Hazelcast", "RMI", "CI/CD"],
+      "Building an AI evaluation platform to validate LLM outputs and systematically measure model quality with automated comparisons.",
+    technologies: ["Django", "Python", "React", "TypeScript"],
   },
   {
-    title: "Software Engineer",
-    company: "Accenture",
-    period: "Mar 2023 – Aug 2024",
+    title: "Graduate Research Assistant",
+    company: "University of Washington, Bothell, Washington",
+    period: "Jun 2025 – Present",
     description:
-      "Designed and developed microservices and REST APIs for large-scale distributed systems; reduced latency by 30%.",
-    technologies: ["Spring Boot", "Java", "Jenkins", "Gradle"],
+      "Led technical execution of an audio transcription system with end-to-end ownership including API optimization and CI/CD automation.",
+    technologies: ["Flask", "Python", "PostgreSQL", "Firebase", "React", "GitHub Actions"],
   },
 ];
 

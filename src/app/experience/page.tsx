@@ -15,44 +15,54 @@ interface Experience {
 
 const experiences: Experience[] = [
   {
+    title: "Software Engineering Intern",
+    company: "Greensand AI, Seattle, Washington",
+    period: "Jan 2026 – Present",
+    description:
+      "Building an AI evaluation platform to validate LLM outputs and systematically measure model quality with automated comparisons.",
+    technologies: ["Django", "Python", "React", "TypeScript"],
+    details:
+      "Built an AI evaluation platform to validate LLM outputs against curated inputs and expected outputs, enabling systematic measurement of model quality. Designed and implemented Django (Python) backend APIs to run evaluations, persist results, and compute metrics such as accuracy, completeness, and determinism. Developed a React and TypeScript web interface to manage 50+ test cases, trigger evaluations, and compare outputs. Enabled automated, repeatable comparisons to detect regressions and inconsistencies in AI model behavior.",
+  },
+  {
     title: "Graduate Research Assistant",
     company: "University of Washington, Bothell, Washington",
     period: "Jun 2025 – Present",
     description:
-      "Leading distributed computing and software engineering research projects, building scalable systems and collaborative platforms.",
-    technologies: ["Java", "Hazelcast", "RMI", "ConcurrentHashMap"],
+      "Led technical execution of an audio transcription system with end-to-end ownership including API optimization and CI/CD automation.",
+    technologies: ["Flask", "Python", "PostgreSQL", "Firebase", "React", "GitHub Actions"],
     details:
-      "Built secure web systems with CI/CD, led a 5-member team to develop a full-stack linguistic transcription platform. Streamlined researcher workflows, improved productivity by 20%, and documented standardized processes to reduce onboarding time by 40%. Implemented mobile agent dispatch and hierarchical result aggregation for distributed tasks.",
+      "Led technical execution of an audio transcription system, driving design decisions across a 5-member engineering team. Built backend services to ingest audio data, generate time-frequency representations, and expose APIs for linguistic analysis. Improved API performance by 40% by optimizing Flask services and PostgreSQL/Firebase queries backing React interfaces. Owned end-to-end delivery, including CI/CD automation using GitHub Actions and authoring technical documentation, aligned with Software Development Lifecycle (SDLC) best practices.",
+  },
+  {
+    title: "Teaching Assistant",
+    company: "University of Washington, Bothell, Washington",
+    period: "Mar 2025 – Jun 2025",
+    description:
+      "Mentored students on system architecture and software engineering best practices across 15+ engineering projects.",
+    technologies: ["System Design", "Code Review", "Documentation"],
+    details:
+      "Mentored students by reviewing system architecture, data flow, and correctness across 15+ software engineering projects. Provided technical feedback focused on maintainability, consistency, and production-readiness.",
   },
   {
     title: "Software Engineer",
-    company: "Accenture Solutions Private Limited, Bangalore, India",
-    period: "Mar 2023 – Aug 2024",
+    company: "Accenture, Bengaluru, India",
+    period: "Dec 2021 – Aug 2024",
     description:
-      "Designed and developed microservices, REST APIs, and optimized distributed systems for performance and scalability.",
-    technologies: ["Spring Boot", "Java", "Jenkins", "Gradle", "SQL"],
+      "Built enterprise REST APIs and resolved production issues while optimizing system performance for millions of customers.",
+    technologies: ["Java", "Spring Boot", "REST APIs", "SonarQube", "Agile"],
     details:
-      "Developed 6+ Spring Boot microservices and REST APIs for large-scale distributed systems, reducing latency by 30%. Automated CI/CD pipelines with Jenkins and Gradle, improving deployment time and observability. Mentored junior developers and conducted 100+ code reviews to enhance team coding standards and maintainability.",
-  },
-  {
-    title: "Application Development Associate",
-    company: "Accenture Solutions Private Limited, Bangalore, India",
-    period: "Dec 2021 – Feb 2023",
-    description:
-      "Integrated client Learning Management Systems and resolved technical issues to improve user satisfaction.",
-    technologies: ["React", "Node.js", "SQL", "Agile"],
-    details:
-      "Integrated Learning Management System (LMS) with client infrastructure, reducing response times by 10%. Resolved technical issues through debugging and testing, improving system reliability and user satisfaction by 10%. Collaborated closely with cross-functional teams to implement improvements.",
+      "Built and maintained 6+ Java Spring Boot REST APIs using MVC and layered design patterns for enterprise mortgage and payments workflows, supporting transactions, payments, and mortgage calculations for over 2M customers. Resolved 100+ production issues through systematic debugging, refactoring, and troubleshooting, leveraging SonarQube to address code quality, security, and test coverage gaps in an agile environment. Reduced API latency by 30% by optimizing data structures, query execution paths, and validation and error-handling logic.",
   },
   {
     title: "Full Stack Developer Intern",
     company: "Khetra Agritech Private Limited, Bangalore, India",
     period: "Jul 2020 – Sep 2020",
     description:
-      "Developed farmer-to-buyer e-commerce platform and optimized system performance for better efficiency.",
+      "Built a complete farmer-to-buyer e-commerce platform in 6 weeks to streamline crop sales and eliminate supply chain middlemen.",
     technologies: ["Flask", "React.js", "MongoDB", "Node.js"],
     details:
-      "Implemented a full-stack e-commerce platform enabling direct sales for 50+ farmers, increasing transaction efficiency by 20%. Optimized application performance with Lighthouse score of 96/100, reduced load times under 1.2s, and improved SEO.",
+      "Implemented a farmer-to-buyer platform from scratch in 6 weeks using Flask backend and React.js frontend to streamline crop sales, reducing middlemen and enabling direct market access for 50+ farmers. Designed and built RESTful APIs with Flask to handle user authentication, crop listings, and transaction management. Developed a responsive React.js frontend with intuitive UI/UX for both farmers and buyers. Implemented MongoDB for scalable document storage and Node.js utilities for background processing. Optimized the application to achieve 96/100 Lighthouse score for performance and SEO, enhancing load time to under 1.2s through code splitting, asset optimization, and efficient database queries. Increased transaction efficiency by 20% and enabled farmers to directly reach buyers, significantly improving profit margins and market accessibility.",
   },
 ];
 
@@ -110,18 +120,18 @@ export default function ExperienceSection() {
                 <div className="sm:hidden absolute left-5 top-8 -translate-x-1/2 w-3 h-3 rounded-full bg-indigo-600 dark:bg-indigo-500 ring-2 ring-white dark:ring-[var(--background)] z-10" />
                 {/* Card - alternating sides on desktop */}
                 <div
-                  className={`w-full sm:w-[calc(50%-2rem)] flex justify-center pl-12 sm:pl-0 ${
+                  className={`w-full sm:w-[calc(50%-2rem)] flex justify-center pl-12 sm:pl-0 sm:ml-8 ${
                     isLeft ? "sm:order-1 sm:pr-10" : "sm:order-3 sm:pl-10"
                   }`}
                 >
                   <motion.article
-                    className="group relative w-full max-w-md rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[var(--surface-elevated)] shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+                    className="group relative w-full max-w-md rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[var(--surface-elevated)] shadow-lg hover:shadow-xl transition-all duration-300"
                     whileHover={{ y: -4, scale: 1.01 }}
                     onClick={() => setSelectedExp(exp)}
                   >
                     {/* Date badge - like a map stop */}
-                    <div className="absolute -top-3 left-4 flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-600 text-white text-xs font-semibold shadow-md">
-                      <Briefcase className="w-3.5 h-3.5" />
+                    <div className="absolute -top-3 left-4 flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-600 text-white text-xs font-semibold shadow-md whitespace-nowrap">
+                      <Briefcase className="w-3.5 h-3.5 flex-shrink-0" />
                       {exp.period}
                     </div>
 
