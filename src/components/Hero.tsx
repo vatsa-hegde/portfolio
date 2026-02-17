@@ -85,19 +85,19 @@ export default function Hero() {
         {/* Right: Details */}
         <motion.div
           className="text-center md:text-left"
-          variants={container}
+          variants={container as any}
           initial="hidden"
           animate="visible"
         >
           <motion.h1
-            variants={item}
+            variants={item as any}
             className="text-3xl font-extrabold tracking-tight sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent"
           >
             Shreevatsa Ganapathy Hegde
           </motion.h1>
 
           <motion.p
-            variants={item}
+            variants={item as any}
             className="mt-4 text-lg text-gray-700 dark:text-gray-300 sm:text-xl"
           >
             Software Engineer & Researcher ·{" "}
@@ -112,7 +112,7 @@ export default function Hero() {
           </motion.p>
 
           <motion.p
-            variants={item}
+            variants={item as any}
             className="mt-4 max-w-lg text-gray-600 dark:text-gray-400 leading-relaxed"
           >
             Building scalable systems and collaborative platforms. Currently at the University of
@@ -121,7 +121,7 @@ export default function Hero() {
           </motion.p>
 
           <motion.div
-            variants={item}
+            variants={item as any}
             className="mt-8 flex flex-col gap-4 sm:flex-row sm:gap-5"
           >
             <motion.a
